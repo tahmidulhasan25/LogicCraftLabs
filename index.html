@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="bn" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LogicCraft Labs | Classic macOS Utilities</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            paper: {
+              bg: '#FDFBF7',
+              card: '#F4EFE6',
+              border: '#E6DEC9',
+              text: '#1C1917',
+              muted: '#78716C',
+              accent: '#B91C1C',
+              accentBg: '#FEF2F2'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            serif: ['Newsreader', 'serif'],
+            mono: ['JetBrains Mono', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .paper-border-left { border-left: 3px solid #B91C1C; }
+  </style>
+</head>
+<body class="bg-[#FDFBF7] text-[#1C1917] font-sans antialiased selection:bg-[#B91C1C] selection:text-white min-h-screen flex flex-col justify-between">
+
+  <!-- Header -->
+  <header class="sticky top-0 z-50 bg-[#FDFBF7]/90 backdrop-blur-md border-b border-[#E6DEC9]">
+    <div class="max-w-5xl mx-auto px-6 h-20 flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        <div class="w-9 h-9 rounded-md bg-[#1C1917] text-[#FDFBF7] flex items-center justify-center font-mono font-bold text-sm shadow-sm">
+          {L}
+        </div>
+        <div class="flex flex-col">
+          <span class="font-serif font-bold text-xl tracking-tight">LogicCraft Labs</span>
+          <span class="text-[10px] font-mono text-[#78716C] tracking-widest uppercase">Open Source Studio</span>
+        </div>
+      </div>
+      
+      <nav class="hidden md:flex items-center space-x-8 text-sm font-medium text-[#78716C]">
+        <a href="#projects" class="hover:text-[#1C1917] transition">Projects</a>
+        <a href="#stack" class="hover:text-[#1C1917] transition">Stack</a>
+        <a href="#roadmap" class="hover:text-[#1C1917] transition">Roadmap</a>
+        <a href="#philosophy" class="hover:text-[#1C1917] transition">Philosophy</a>
+      </nav>
+
+      <div>
+        <a href="https://github.com" target="_blank" class="bg-[#1C1917] hover:bg-[#332E2B] text-[#FDFBF7] px-4 py-2.5 rounded-lg text-sm font-semibold transition shadow-sm">
+          GitHub
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="pt-20 pb-12 px-6 max-w-4xl mx-auto">
+      <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-[#FEF2F2] border border-[#FCA5A5] text-[#B91C1C] text-xs font-mono mb-6">
+        <span>MIT License</span>
+        <span>•</span>
+        <span>Native macOS Utilities</span>
+      </div>
+      
+      <h1 class="font-serif text-4xl md:text-6xl font-normal tracking-tight text-[#1C1917] leading-tight">
+        Thoughtful design,<br>
+        <span class="italic font-normal text-[#B91C1C]">crafted for focus.</span>
+      </h1>
+      
+      <p class="mt-6 text-[#78716C] text-lg max-w-2xl font-sans leading-relaxed">
+        Building fast, zero-bloat, open-source macOS software. Blending classic stationery aesthetics with modern Swift engineering.
+      </p>
+
+      <!-- Terminal Command Snippet -->
+      <div class="mt-8 bg-[#1C1917] text-[#FDFBF7] rounded-xl p-4 max-w-xl flex items-center justify-between font-mono text-xs shadow-md">
+        <div class="flex items-center space-x-3 overflow-x-auto">
+          <span class="text-[#B91C1C] select-none">$</span>
+          <span id="cmdText">brew install --cask logiccraft/tap/niloys-journal</span>
+        </div>
+        <button onclick="copyCommand()" class="ml-4 bg-[#332E2B] hover:bg-[#443E3A] px-3 py-1.5 rounded text-[11px] text-[#E6DEC9] transition border border-[#443E3A]">
+          Copy
+        </button>
+      </div>
+
+      <div class="mt-8 flex flex-wrap gap-4">
+        <a href="#projects" class="bg-[#B91C1C] hover:bg-[#991B1B] text-white font-medium px-6 py-3 rounded-lg transition shadow-sm">
+          View Utilities
+        </a>
+        <a href="https://github.com" target="_blank" class="bg-[#F4EFE6] hover:bg-[#E6DEC9] border border-[#E6DEC9] text-[#1C1917] font-medium px-6 py-3 rounded-lg transition">
+          Source Repositories
+        </a>
+      </div>
+    </section>
+
+    <!-- Tech Stack Section -->
+    <section id="stack" class="max-w-5xl mx-auto py-10 px-6 border-t border-[#E6DEC9]">
+      <p class="text-xs font-mono text-[#78716C] uppercase tracking-widest text-center mb-6">Built With Precision Tooling</p>
+      <div class="flex flex-wrap justify-center gap-3 font-mono text-xs">
+        <span class="px-3.5 py-1.5 rounded-lg bg-[#F4EFE6] border border-[#E6DEC9] text-[#1C1917]">Swift 6.0</span>
+        <span class="px-3.5 py-1.5 rounded-lg bg-[#F4EFE6] border border-[#E6DEC9] text-[#1C1917]">SwiftUI</span>
+        <span class="px-3.5 py-1.5 rounded-lg bg-[#F4EFE6] border border-[#E6DEC9] text-[#1C1917]">SwiftData</span>
+        <span class="px-3.5 py-1.5 rounded-lg bg-[#F4EFE6] border border-[#E6DEC9] text-[#1C1917]">Xcode IDE</span>
+        <span class="px-3.5 py-1.5 rounded-lg bg-[#F4EFE6] border border-[#E6DEC9] text-[#1C1917]">C++ / Core Logic</span>
+        <span class="px-3.5 py-1.5 rounded-lg bg-[#F4EFE6] border border-[#E6DEC9] text-[#1C1917]">macOS SDK</span>
+      </div>
+    </section>
+
+    <!-- Projects Showcase & Interactive Filter -->
+    <section id="projects" class="max-w-5xl mx-auto py-16 px-6 border-t border-[#E6DEC9]">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
+        <div>
+          <h2 class="font-serif text-3xl font-bold">Featured Projects</h2>
+          <p class="text-[#78716C] text-sm mt-1">Lightweight applications tailored for Apple Silicon.</p>
+        </div>
+
+        <!-- Filter Buttons -->
+        <div class="flex space-x-2 font-mono text-xs">
+          <button onclick="filterProjects('all')" class="filter-btn active bg-[#1C1917] text-[#FDFBF7] px-3 py-1.5 rounded-md border border-[#1C1917]">All</button>
+          <button onclick="filterProjects('journal')" class="filter-btn bg-[#F4EFE6] text-[#78716C] hover:text-[#1C1917] px-3 py-1.5 rounded-md border border-[#E6DEC9]">Journal</button>
+          <button onclick="filterProjects('utility')" class="filter-btn bg-[#F4EFE6] text-[#78716C] hover:text-[#1C1917] px-3 py-1.5 rounded-md border border-[#E6DEC9]">Utilities</button>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- Project 1: Niloy's Journal -->
+        <div class="project-card journal bg-[#F4EFE6] border border-[#E6DEC9] rounded-xl p-7 shadow-sm paper-border-left flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-mono font-medium text-[#B91C1C] bg-[#FEF2F2] px-2.5 py-1 rounded border border-[#FCA5A5]">SwiftUI / SwiftData</span>
+              <span class="text-xs font-mono text-[#78716C]">v1.0.0</span>
+            </div>
+            
+            <h3 class="font-serif text-2xl font-bold mt-4 text-[#1C1917]">Niloy's Journal</h3>
+            
+            <p class="text-[#78716C] text-sm mt-3 leading-relaxed font-sans">
+              A minimal, distraction-free native macOS journal app featuring classic cream-colored pages, subtle rolled lines, and secure local storage.
+            </p>
+          </div>
+
+          <div class="mt-8 pt-4 border-t border-[#E6DEC9]/60 flex items-center justify-between">
+            <a href="#" class="text-sm font-semibold text-[#1C1917] hover:text-[#B91C1C] transition flex items-center space-x-1">
+              <span>View Source</span>
+              <span>&rarr;</span>
+            </a>
+            <button onclick="alert('Downloading DMG package...')" class="text-xs bg-[#1C1917] hover:bg-[#332E2B] text-[#FDFBF7] px-3.5 py-2 rounded-md font-medium transition">
+              Download .dmg
+            </button>
+          </div>
+        </div>
+
+        <!-- Project 2: Logic Engine Tools -->
+        <div class="project-card utility bg-[#F4EFE6] border border-[#E6DEC9] rounded-xl p-7 shadow-sm flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-mono font-medium text-[#78716C] bg-[#E6DEC9] px-2.5 py-1 rounded">In Development</span>
+              <span class="text-xs font-mono text-[#78716C]">Coming Soon</span>
+            </div>
+            
+            <h3 class="font-serif text-2xl font-bold mt-4 text-[#1C1917]">Logic Engine Tools</h3>
+            
+            <p class="text-[#78716C] text-sm mt-3 leading-relaxed font-sans">
+              Menu-bar utility toolkit designed for Apple Silicon performance monitoring, workflow automation, and minimal system overlay.
+            </p>
+          </div>
+
+          <div class="mt-8 pt-4 border-t border-[#E6DEC9]/60 flex items-center justify-between">
+            <span class="text-xs font-mono text-[#78716C]">Open-source under MIT</span>
+            <span class="text-xs font-semibold text-[#B91C1C]">v0.1-alpha</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Development Roadmap Section -->
+    <section id="roadmap" class="max-w-4xl mx-auto py-16 px-6 border-t border-[#E6DEC9]">
+      <h2 class="font-serif text-2xl font-bold mb-6 text-center">Development Roadmap</h2>
+      <div class="space-y-6 font-sans text-sm">
+        <div class="flex items-start space-x-4 bg-[#F4EFE6] p-4 rounded-xl border border-[#E6DEC9]">
+          <span class="font-mono text-xs font-bold bg-[#B91C1C] text-white px-2 py-1 rounded">v1.0.0</span>
+          <div>
+            <h4 class="font-bold text-[#1C1917]">Niloy's Journal Release</h4>
+            <p class="text-[#78716C] text-xs mt-1">Initial public build with offline SwiftData sync and vintage paper rendering engine.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4 bg-[#F4EFE6] p-4 rounded-xl border border-[#E6DEC9]">
+          <span class="font-mono text-xs font-bold bg-[#78716C] text-white px-2 py-1 rounded">v1.1.0</span>
+          <div>
+            <h4 class="font-bold text-[#1C1917]">Export & Markdown Engine</h4>
+            <p class="text-[#78716C] text-xs mt-1">PDF export capabilities, custom typography choices, and Markdown syntax highlighting.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Philosophy Section -->
+    <section id="philosophy" class="max-w-3xl mx-auto py-16 px-6 border-t border-[#E6DEC9] text-center">
+      <h2 class="font-serif text-2xl font-bold text-[#1C1917]">Crafted with Purpose & Precision</h2>
+      <p class="mt-4 text-[#78716C] text-sm leading-relaxed font-sans">
+        LogicCraft Labs operates on a simple premise: desktop utilities should be ultra-fast, offline-first, and completely tracking-free. We blend classic paper aesthetics with native Swift engineering to deliver zero-bloat, open-source tools designed for pure focus.
+      </p>
+    </section>
+
+    <!-- Release Updates / Newsletter Section -->
+    <section class="max-w-3xl mx-auto py-16 px-6 border-t border-[#E6DEC9] text-center">
+      <h2 class="font-serif text-2xl font-bold">Stay Updated</h2>
+      <p class="text-[#78716C] text-xs mt-2 font-sans">Get notified when new open-source macOS utilities or DMG packages are released.</p>
+      
+      <form onsubmit="event.preventDefault(); alert('Subscribed to release updates!');" class="mt-6 flex flex-col sm:flex-row justify-center gap-3 max-w-md mx-auto">
+        <input type="email" placeholder="developer@domain.com" required class="bg-[#F4EFE6] border border-[#E6DEC9] px-4 py-2.5 rounded-lg text-sm text-[#1C1917] focus:outline-none focus:border-[#B91C1C] flex-1">
+        <button type="submit" class="bg-[#1C1917] hover:bg-[#332E2B] text-[#FDFBF7] px-5 py-2.5 rounded-lg text-sm font-semibold transition">
+          Subscribe
+        </button>
+      </form>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer id="contact" class="border-t border-[#E6DEC9] py-8 px-6 text-center text-xs text-[#78716C] font-mono">
+    <p>&copy; 2026 LogicCraft Labs. Released under the MIT License.</p>
+  </footer>
+
+  <!-- Interactive JavaScript -->
+  <script>
+    // Copy Command to Clipboard Function
+    function copyCommand() {
+      const cmd = document.getElementById('cmdText').innerText;
+      navigator.clipboard.writeText(cmd);
+      alert('Copied install command to clipboard!');
+    }
+
+    // Filter Projects Function
+    function filterProjects(category) {
+      const cards = document.querySelectorAll('.project-card');
+      const buttons = document.querySelectorAll('.filter-btn');
+
+      buttons.forEach(btn => {
+        btn.classList.remove('bg-[#1C1917]', 'text-[#FDFBF7]');
+        btn.classList.add('bg-[#F4EFE6]', 'text-[#78716C]');
+      });
+
+      event.target.classList.remove('bg-[#F4EFE6]', 'text-[#78716C]');
+      event.target.classList.add('bg-[#1C1917]', 'text-[#FDFBF7]');
+
+      cards.forEach(card => {
+        if (category === 'all' || card.classList.contains(category)) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+  </script>
+</body>
+</html>
