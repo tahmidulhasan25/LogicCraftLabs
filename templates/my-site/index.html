@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MegaCorp Enterprise - Light Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Top Announcement Marquee & Live Clock Header -->
+  <div class="top-header">
+    <div class="marquee-container">
+      <div class="marquee-text">
+        Welcome to MegaCorp Enterprise Megaproject Operations Dashboard — Real-time Financial Engine & Multi-Branch Management Active
+      </div>
+    </div>
+    <div class="clock-box" id="liveClock">
+      Loading Time...
+    </div>
+  </div>
+
+  <!-- Main Navigation -->
+<nav>
+    <div class="brand">
+        <div class="brand-log"></div>
+        <!-- এখানে MEGACORP এর জায়গায় আপনার নতুন সাইটের নাম বা প্রজেক্ট লিংক দিতে পারেন -->
+        <a href="templates/my-site/index.html" target="_blank" style="text-decoration: none; color: inherit;">
+            MY-SITE PROJECT
+        </a>
+    </div>
+    <div class="nav-right">
+        <button class="export-btn" onclick="openExecutiveReport()">📄 Executive Brief</button>
+        <div class="status-badge">
+            <div class="pulse"></div>
+            LIVE MONETIZATION ACTIVE
+        </div>
+    </div>
+</nav>
+
+  <!-- Layout Wrapper -->
+  <div class="main-wrapper">
+    
+    <!-- Left / Main Content Container -->
+    <div class="content-container">
+
+      <!-- Top Metrics Cards -->
+      <div class="metrics-grid">
+        <div class="card card-cyan">
+          <div class="card-title">Live Revenue (Per Second)</div>
+          <div class="ticker-value" id="perSecondRevenue">$ 0.00</div>
+          <div class="sub-value up">▲ $ 1,250 / sec rate</div>
+        </div>
+
+        <div class="card card-purple">
+          <div class="card-title">Total Daily Revenue</div>
+          <div class="ticker-value" id="totalRevenue">$ 4,500,000.00</div>
+          <div class="sub-value up">▲ Real-time accumulation</div>
+        </div>
+
+        <div class="card card-orange">
+          <div class="card-title">Stock Price (MEGA-INDX)</div>
+          <div class="ticker-value" id="stockPrice">$ 450.25</div>
+          <div class="sub-value" id="stockTrend">Calculating trend...</div>
+        </div>
+
+        <div class="card card-green">
+          <div class="card-title">Total Workforce</div>
+          <div class="ticker-value">12,480</div>
+          <div class="sub-value muted">On-Site: 8,400 | Robotics: 4,080</div>
+        </div>
+      </div>
+
+      <!-- Live Stock Line Graph Chart Card -->
+      <div class="card card-blue">
+        <div class="card-header-flex">
+          <div class="card-title">Live Stock Market Performance (Real-time Line Trend)</div>
+          <span class="graph-badge">MEGA-INDX Live Feed</span>
+        </div>
+        <div class="chart-container">
+          <svg class="stock-svg" id="stockChart" viewBox="0 0 600 150">
+            <defs>
+              <marker id="arrowMarker" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#ef4444" />
+              </marker>
+            </defs>
+            <polyline 
+              fill="none" 
+              stroke="#ef4444" 
+              stroke-width="3" 
+              id="chartPolyline" 
+              points="" 
+              marker-end="url(#arrowMarker)" 
+            />
+          </svg>
+        </div>
+      </div>
+
+      <!-- HIGH IMPACT FEATURE: Interactive ROI Calculator & AI Predictive Risk -->
+      <div class="dashboard-grid">
+        
+        <!-- ROI / Dividend Calculator Card -->
+        <div class="card card-purple">
+          <div class="card-title">Investor Live ROI & Dividend Calculator</div>
+          <div class="roi-box">
+            <div class="roi-input-group">
+              <label for="investmentInput">Enter Investment Amount ($):</label>
+              <input type="number" id="investmentInput" value="100000" min="1000" step="5000" oninput="calculateROI()">
+            </div>
+            <div class="roi-results-grid">
+              <div class="roi-res-item">
+                <span class="roi-label">Est. Annual Return (14.5%)</span>
+                <span class="roi-val" id="roiAnnual">$ 14,500.00</span>
+              </div>
+              <div class="roi-res-item">
+                <span class="roi-label">Per-Second Payout Rate</span>
+                <span class="roi-val green-text" id="roiPerSecond">$ 0.00046</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- AI Analytics & Risk Gauge Widget -->
+        <div class="card card-cyan">
+          <div class="card-title">AI Predictive Analytics & Risk Meter</div>
+          <div class="ai-widget">
+            <div class="ai-metric">
+              <span>Overall Operational Health:</span>
+              <strong class="green-text">99.4% (Optimal)</strong>
+            </div>
+            <div class="ai-metric">
+              <span>Market Volatility Index:</span>
+              <strong class="orange-text">Low Risk (2.1%)</strong>
+            </div>
+            <div class="ai-metric">
+              <span>24h AI Revenue Forecast:</span>
+              <strong class="blue-text">+16.2% Surge Expected</strong>
+            </div>
+            <div class="risk-bar-bg">
+              <div class="risk-bar-fill"></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Dashboard Middle Grid -->
+      <div class="dashboard-grid">
+        
+        <!-- Inventory Table -->
+        <div class="card">
+          <div class="card-title">Inventory & Product Portfolio</div>
+          <table>
+            <thead>
+              <tr>
+                <th>Product Name</th>
+                <th>Category</th>
+                <th>Current Stock</th>
+                <th>Unit Price</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Industrial Generator X-900</td>
+                <td>Heavy Machinery</td>
+                <td id="stock-1">1,240 Units</td>
+                <td>$ 15,000</td>
+                <td class="up">Optimal</td>
+              </tr>
+              <tr>
+                <td>High-Voltage Substation</td>
+                <td>Power Grid</td>
+                <td id="stock-2">455 Units</td>
+                <td>$ 45,000</td>
+                <td class="up">Optimal</td>
+              </tr>
+              <tr>
+                <td>Industrial Robotic Arm R-4</td>
+                <td>Automation</td>
+                <td id="stock-3">83 Units</td>
+                <td>$ 8,500</td>
+                <td class="down">Low Stock</td>
+              </tr>
+              <tr>
+                <td>Solar Tracking Panel Array</td>
+                <td>Renewable Energy</td>
+                <td id="stock-4">5,596 Units</td>
+                <td>$ 1,200</td>
+                <td class="up">Optimal</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Share Ownership Distribution -->
+        <div class="card">
+          <div class="card-title">Shareholding Capital Structure (%)</div>
+          <div class="share-bar-container">
+            <div class="share-bar">
+              <div class="share-segment segment-1"></div>
+              <div class="share-segment segment-2"></div>
+              <div class="share-segment segment-3"></div>
+              <div class="share-segment segment-4"></div>
+            </div>
+            <div class="share-legend">
+              <div class="legend-item">
+                <span><strong class="color-1">■</strong> Sponsors & Founders</span>
+                <span>45%</span>
+              </div>
+              <div class="legend-item">
+                <span><strong class="color-2">■</strong> Institutional Investors</span>
+                <span>30%</span>
+              </div>
+              <div class="legend-item">
+                <span><strong class="color-3">■</strong> Public Retail Shares</span>
+                <span>15%</span>
+              </div>
+              <div class="legend-item">
+                <span><strong class="color-4">■</strong> Sovereign Wealth Fund</span>
+                <span>10%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Our Global Branches & Industrial Hubs -->
+      <div class="card">
+        <div class="card-title">Our Global Branches & Manufacturing Hubs</div>
+        <div class="branches-grid">
+          
+          <div class="branch-card">
+            <div class="branch-header">
+              <span class="branch-flag">🌐</span>
+              <div>
+                <h4>Central Megaproject Plant</h4>
+                <span class="branch-location">Mymensingh Industrial Zone</span>
+              </div>
+            </div>
+            <p>Primary heavy equipment manufacturing and grid distribution central command.</p>
+            <div class="branch-footer">
+              <span class="status-pill active-pill">● Fully Operational</span>
+              <span class="capacity-text">Capacity: 98%</span>
+            </div>
+          </div>
+
+          <div class="branch-card">
+            <div class="branch-header">
+              <span class="branch-flag">🏢</span>
+              <div>
+                <h4>Dhaka Technology HQ</h4>
+                <span class="branch-location">Dhaka Business District</span>
+              </div>
+            </div>
+            <p>Corporate executive suite, investor relations, and AI operations hub.</p>
+            <div class="branch-footer">
+              <span class="status-pill active-pill">● Active</span>
+              <span class="capacity-text">Capacity: 92%</span>
+            </div>
+          </div>
+
+          <div class="branch-card">
+            <div class="branch-header">
+              <span class="branch-flag">⚓</span>
+              <div>
+                <h4>Maritime Freight Terminal</h4>
+                <span class="branch-location">Chittagong Deep Sea Port</span>
+              </div>
+            </div>
+            <p>International shipping export port, logistics warehouse, and customs hub.</p>
+            <div class="branch-footer">
+              <span class="status-pill active-pill">● Active</span>
+              <span class="capacity-text">Capacity: 85%</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Industrial Facilities & Infrastructure -->
+      <div class="card">
+        <div class="card-title">Key Industrial Facilities & Infrastructure</div>
+        <div class="facilities-grid">
+          
+          <div class="facility-item">
+            <div class="facility-icon">⚡</div>
+            <div class="facility-info">
+              <h5>Captive 500MW Power Substation</h5>
+              <p>Redundant dual-grid solar & diesel backup power supply system.</p>
+            </div>
+          </div>
+
+          <div class="facility-item">
+            <div class="facility-icon">🔬</div>
+            <div class="facility-info">
+              <h5>R&D VLSI & Embedded Lab</h5>
+              <p>In-house testing facility for next-gen silicon control chips.</p>
+            </div>
+          </div>
+
+          <div class="facility-item">
+            <div class="facility-icon">🛡️</div>
+            <div class="facility-info">
+              <h5>Automated Safety System</h5>
+              <p>Real-time gas detector, fire suppression, and zero-incident monitor.</p>
+            </div>
+          </div>
+
+          <div class="facility-item">
+            <div class="facility-icon">📦</div>
+            <div class="facility-info">
+              <h5>Robotic Logistics Warehouse</h5>
+              <p>Fully automated storage, pallet sorting, and AGV transport system.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Megaproject Architectural Blueprint -->
+      <div class="card">
+        <div class="card-title">Megaproject Architectural Blueprint</div>
+        <div class="blueprint-grid">
+          
+          <div class="blueprint-card">
+            <h4>Phase 1: Power Grid Infrastructure</h4>
+            <p>Construction of central power units and primary distribution hubs.</p>
+            <div class="progress-bar">
+              <div class="progress-fill progress-100"></div>
+            </div>
+            <span class="status-text up">100% Completed</span>
+          </div>
+
+          <div class="blueprint-card">
+            <h4>Phase 2: AI Robotics Automation</h4>
+            <p>Integration of autonomous robotic assembly systems on plant floors.</p>
+            <div class="progress-bar">
+              <div class="progress-fill progress-75"></div>
+            </div>
+            <span class="status-text active">75% Completed</span>
+          </div>
+
+          <div class="blueprint-card">
+            <h4>Phase 3: Global Supply Chain Link</h4>
+            <p>Expansion of deep-sea port terminals and international freight routing.</p>
+            <div class="progress-bar">
+              <div class="progress-fill progress-40"></div>
+            </div>
+            <span class="status-text warning">40% In Progress</span>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Right Animated Product Showcase Sidebar -->
+    <aside class="sidebar-showcase">
+      <div class="card sidebar-card">
+        <div class="card-title">Featured Products Animation</div>
+        
+        <div class="animated-product-card">
+          <div class="product-icon-box generator-anim">⚙️</div>
+          <h3>Industrial Turbine X-900</h3>
+          <p>Heavy duty power generation unit operating at peak efficiency.</p>
+          <div class="live-tag">ACTIVE PRODUCTION</div>
+        </div>
+
+        <div class="animated-product-card">
+          <div class="product-icon-box robot-anim">🤖</div>
+          <h3>Robotic Arm Assembly R-4</h3>
+          <p>Precision AI-guided precision manufacturing unit.</p>
+          <div class="live-tag cyan-tag">DEPLOYED ON-SITE</div>
+        </div>
+
+        <div class="animated-product-card">
+          <div class="product-icon-box solar-anim">☀️</div>
+          <h3>Solar Grid Array</h3>
+          <p>High-efficiency photovoltaics with dual-axis tracking.</p>
+          <div class="live-tag green-tag">GENERATING POWER</div>
+        </div>
+
+        <!-- Simulated Live CCTV Feed Widget -->
+        <div class="cctv-card">
+          <div class="cctv-header">
+            <span>📹 CAM #01 - PLANT FLOOR</span>
+            <span class="rec-dot">● REC</span>
+          </div>
+          <div class="cctv-screen">
+            <div class="cctv-grid-overlay"></div>
+            <div class="cctv-text">LIVE FEED SYNCED</div>
+          </div>
+        </div>
+
+        <!-- Live System Activity Log Feed -->
+        <div class="system-logs-box">
+          <div class="card-title" style="font-size: 0.8rem; color: #94a3b8;">Live Operational System Logs</div>
+          <div class="logs-container" id="logsFeed">
+            <div class="log-entry">[09:27:00] Turbine X-900 status: Normal</div>
+            <div class="log-entry">[09:27:02] Stock ticker MEGA-INDX synced</div>
+            <div class="log-entry">[09:27:05] Revenue engine payout processed</div>
+          </div>
+        </div>
+
+      </div>
+    </aside>
+
+  </div>
+
+  <!-- Executive Brief Popup Modal -->
+  <div class="modal-overlay" id="reportModal">
+    <div class="modal-box">
+      <h3>Executive Brief & Financial Prospectus</h3>
+      <p>MegaCorp Enterprise Megaproject — Operational Summary Report</p>
+      <hr style="margin: 10px 0; border: 0; border-top: 1px solid #e2e8f0;">
+      <ul style="text-align: left; font-size: 0.9rem; margin-bottom: 15px; padding-left: 20px;">
+        <li>Current Market Cap Index: <strong>MEGA-INDX ($450.25)</strong></li>
+        <li>Monetization Engine Rate: <strong>$1,250.00 / Sec</strong></li>
+        <li>Active Workforce: <strong>12,480 Engineers & AI Robotics</strong></li>
+        <li>Projected Fiscal Annual Growth: <strong>+18.4% YoY</strong></li>
+      </ul>
+      <button class="export-btn" onclick="window.print()">🖨️ Print / Download Brief</button>
+      <button class="close-btn" onclick="closeExecutiveReport()">Close</button>
+    </div>
+  </div>
+
+  <!-- FOOTER SECTION -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      
+      <!-- Column 1: Links -->
+      <div class="footer-col">
+        <h4>Company & Info</h4>
+        <ul class="footer-links">
+          <li><a href="#careers">Careers</a></li>
+          <li><a href="#notice">Notice Board</a></li>
+          <li><a href="#contact">Contact Us</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 2: Email Subscription -->
+      <div class="footer-col footer-subscribe">
+        <h4>Subscribe to Updates</h4>
+        <p>Get real-time operational reports & financial news.</p>
+        <form class="subscribe-form" onsubmit="event.preventDefault(); alert('Subscribed successfully!');">
+          <input type="email" placeholder="Enter your business email" required />
+          <button type="submit">Subscribe</button>
+        </form>
+      </div>
+
+      <!-- Column 3: Social Media Icons -->
+      <div class="footer-col footer-socials">
+        <h4>Connect With Us</h4>
+        <div class="social-icons">
+          <a href="#" title="Facebook" class="social-btn">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+            </svg>
+          </a>
+          <a href="#" title="Instagram" class="social-btn">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+            </svg>
+          </a>
+          <a href="#" title="YouTube" class="social-btn">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+              <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+            </svg>
+          </a>
+          <a href="#" title="X" class="social-btn">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+            </svg>
+          </a>
+          <a href="#" title="LinkedIn" class="social-btn">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+              <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Copyright Bar -->
+    <div class="footer-bottom">
+      &copy; 2026 MegaCorp Enterprise Megaproject. All Rights Reserved.
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
